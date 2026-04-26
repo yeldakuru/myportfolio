@@ -1,5 +1,3 @@
-// Initialize Icons
-lucide.createIcons();
 
 // SCROLL REVEAL ANIMATION
 // We use the IntersectionObserver API to detect when elements enter the viewport
@@ -168,6 +166,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // TYPEWRITER EFFECT
 document.addEventListener("DOMContentLoaded", () => {
+
     const words = [
         "software developer",
         "full-stack developer",
@@ -211,6 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     type();
+
+
 });
 lucide.createIcons();
 // NAVBAR ACTIVE LINK SYSTEM
@@ -316,6 +317,7 @@ toggleBtn.addEventListener("click", () => {
         moreProjects.classList.add("hidden");
         toggleBtn.textContent = "More Projects";
     }
+
 });
 
 // LOGO CLICK SCROLL TO TOP
