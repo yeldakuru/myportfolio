@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yelda Kuru</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="antialiased overflow-x-hidden">
+    <canvas id="space-bg"></canvas>
+
+    <!-- 🌌 STARFIELD BACKGROUND -->
+    <div id="starfield"></div>
+
+
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-50 bg-transparent border-transparent transition-all duration-500">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div id="logo" class="text-2xl font-bold text-cyan-400">
+                    Yelda Kuru
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-cyan-400 focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden absolute top-full left-0 w-full flex-col items-center gap-3 py-4 
+           bg-slate-900/95 backdrop-blur-xl border-t border-slate-700 shadow-lg md:hidden z-50">
+
+                    <a href="#home" class="hover:text-cyan-400 text-base py-1">Home</a>
+                    <a href="#skills" class="hover:text-cyan-400 text-base py-1">Skills</a>
+                    <a href="#about" class="hover:text-cyan-400 text-base py-1">About</a>
+                    <a href="#experience" class="hover:text-cyan-400 text-base py-1">Experience</a>
+                    <a href="#projects" class="hover:text-cyan-400 text-base py-1">Projects</a>
+                    <a href="#contact" class="hover:text-cyan-400 text-base py-1">Let’s Talk</a>
+                </div>
+
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home"
+                            class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#skills"
+                            class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#about"
+                            class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#experience"
+                            class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+                        <a href="#projects"
+                            class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#contact"
+                            class="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">
+                            Let's Talk
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden snap-start">
+
+        <div
+            class="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
+        </div>
+        <div
+            class="absolute top-40 right-10 w-72 h-72 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center z-10">
+
+
+            <p class="text-cyan-500 font-medium text-xl sm:text-2xl mb-6">
+                Hi, my name is Yelda
+            </p>
+
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight reveal delay-100">
+                I am a
+                <span id="typewriter"
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+                    software developer
+                </span>
+            </h1>
+
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 reveal delay-200">
+                I'm a passionate full-stack developer crafting modern & scalable web experiences.
+            </p>
+
+            <div class="reveal delay-300">
+                <a href="#projects"
+                    class="border border-cyan-400 text-cyan-400 px-8 py-3 rounded-md hover:bg-cyan-400/10 transition-colors mr-4">
+                    View Work
+                </a>
+                <a href="#contact"
+                    class="border border-cyan-400 text-cyan-400 px-8 py-3 rounded-md hover:bg-cyan-400/10 transition-colors mr-4">
+                    Contact Me
+                </a>
+
+                <div class="mt-6 flex justify-center">
+                    <a href="assets/yeldakurucv.pdf" download
+                        class="bg-cyan-500 text-slate-900 px-8 py-3 rounded-md font-bold hover:bg-cyan-400 transition-colors">
+                        Download My CV
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS SECTION (INFINITE SLIDER) -->
+    <section id="skills" class="py-20 bg-slate-950 border-y border-slate-800 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 mb-10 text-center reveal">
+            <h2 class="text-3xl font-bold mb-2">My Tech Stack</h2>
+            <p class="text-slate-400">Tools and technologies I use </p>
+        </div>
+
+        <!-- The Slider Container -->
+        <div class="slider-container relative w-full reveal delay-100">
+            <div class="slider-track gap-8 py-4">
+
+                <!-- 
+                   LOGIC: We have TWO sets of the same items.
+                   As the first set scrolls out of view to the left, 
+                   the second set takes its place perfectly.
+                   When the animation ends (-50%), it snaps back to 0% instantly.
+                -->
+
+                <!-- SET 1 -->
+                <div class="flex gap-8 items-center px-4">
+                    <div class="skill-card"><i data-lucide="database" class="text-blue-300"></i> MSSQL</div>
+                    <div class="skill-card"><i data-lucide="file-code-2" class="text-orange-500"></i> HTML5</div>
+                    <div class="skill-card"><i data-lucide="file-json" class="text-yellow-400"></i> JavaScript</div>
+                    <div class="skill-card"><i data-lucide="server" class="text-purple-400"></i> ASP.NET Mvc</div>
+                    <div class="skill-card"><i data-lucide="palette" class="text-blue-500"></i> CSS3</div>
+                    <div class="skill-card"><i data-lucide="atom" class="text-cyan-400"></i> React</div>
+                    <div class="skill-card"><i data-lucide="server" class="text-green-500"></i> Node.js</div>
+                    <div class="skill-card"><i data-lucide="database" class="text-blue-300"></i> MongoDB</div>
+                    <div class="skill-card"><i data-lucide="git-branch" class="text-red-500"></i> Git-Github</div>
+                    <div class="skill-card"><i data-lucide="wind" class="text-teal-400"></i> Tailwind</div>
+                    <div class="skill-card"><i data-lucide="palette" class="text-pink-500"></i> Bootstrap5</div>
+                    <div class="skill-card"><i data-lucide="square-code" class="text-green-500"></i> Typescript</div>
+                    <div class="skill-card"><i data-lucide="file-code-corner" class="text-blue-500"></i> C# EFCORE</div>
+                </div>
+
+                <!-- SET 2 (Duplicate) -->
+                <div class="skill-card"><i data-lucide="database" class="text-blue-300"></i> MSSQL</div>
+                <div class="skill-card"><i data-lucide="file-code-2" class="text-orange-500"></i> HTML5</div>
+                <div class="skill-card"><i data-lucide="file-json" class="text-yellow-400"></i> JavaScript</div>
+                <div class="skill-card"><i data-lucide="server" class="text-purple-400"></i> ASP.NET Mvc</div>
+                <div class="skill-card"><i data-lucide="palette" class="text-blue-500"></i> CSS3</div>
+                <div class="skill-card"><i data-lucide="atom" class="text-cyan-400"></i> React</div>
+                <div class="skill-card"><i data-lucide="server" class="text-green-500"></i> Node.js</div>
+                <div class="skill-card"><i data-lucide="database" class="text-blue-300"></i> MongoDB</div>
+                <div class="skill-card"><i data-lucide="git-branch" class="text-red-500"></i> Git-Github</div>
+                <div class="skill-card"><i data-lucide="wind" class="text-teal-400"></i> Tailwind</div>
+                <div class="skill-card"><i data-lucide="palette" class="text-pink-500"></i> Bootstrap5</div>
+                <div class="skill-card"><i data-lucide="square-code" class="text-green-500"></i> Typescript</div>
+                <div class="skill-card"><i data-lucide="file-code-corner" class="text-blue-500"></i> C# EFCORE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-slate-900 ">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+
+                <div class="reveal">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="h-px w-10 bg-cyan-400"></span>
+                        <span class="text-cyan-400 font-medium uppercase tracking-wider">About Me</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Passionate about clean code and user-centric
+                        design.
+                    </h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed ">
+                        My journey began with an intense curiosity about how things work behind the scenes. This quickly
+                        led me to developing robust, modern web applications using React and .NET Core.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        I continue to be fascinated by the logic and creativity of the software.
+                    </p>
+                </div>
+
+                <div class="relative group reveal delay-200">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <div class="relative bg-slate-800 rounded-lg p-1">
+                        <div class="bg-slate-800 h-64 rounded flex items-center justify-center overflow-hidden">
+                            <image src="assets/2.png"
+                                class="object-cover h-full w-full transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-32 relative z-10">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mt-10 mb-16 reveal
+    bg-gradient-to-r from-cyan-400 to-purple-200 bg-clip-text text-transparent
+    leading-relaxed pb-1">
+            Experience
+        </h2>
+
+        <div class="relative max-w-4xl mx-auto">
+
+            <!-- Dik Çizgi -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] 
+            bg-cyan-400/40 shadow-[0_0_20px_#22d3ee80]"></div>
+
+            <!-- ITEM 1 – SOL -->
+            <div class="mb-16 flex justify-start reveal-exp ">
+                <div class="w-1/2 pr-10 text-right">
+                    <p class="text-gray-300 text-sm">2025-</p>
+                    <h3 class="text-xl font-bold text-white">Student</h3>
+                    <p class="text-cyan-400 font-medium">Eskişehir Anadolu University</p>
+                    <p class="text-gray-400 mt-2">
+                        I am currently in my 3rd year of study in the Management Information System program at the
+                        Open Education Faculty
+                    </p>
+                </div>
+
+                <!-- Nokta -->
+                <div class="relative">
+                    <div class="w-6 h-6 bg-cyan-400 rounded-full border-4 border-slate-900"></div>
+                </div>
+
+                <div class="w-1/2"></div>
+            </div>
+
+            <!-- ITEM 2 – SAĞ -->
+            <div class="mb-16 flex justify-end reveal-exp ">
+                <div class="w-1/2"></div>
+
+                <div class="relative">
+                    <div class="w-6 h-6 bg-cyan-400 rounded-full border-4 border-slate-900"></div>
+                </div>
+
+                <div class="w-1/2 pl-10 text-left">
+                    <p class="text-gray-300 text-sm">2024-2025</p>
+                    <h3 class="text-xl font-bold text-white">Kariyer.net</h3>
+                    <p class="text-cyan-400 font-medium">Internship</p>
+                    <p class="text-gray-400 mt-2">
+                        Used Unit test development, data-code manipulation
+                        and Docker in a group project.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 3 – SOL -->
+            <div class="mb-16 flex justify-start reveal-exp ">
+                <div class="w-1/2 pr-10 text-right">
+                    <p class="text-gray-300 text-sm">2024-2025</p>
+                    <h3 class="text-xl font-bold text-white">Istanbul Development Agency -Talent Istanbul</h3>
+                    <p class="text-cyan-400 font-medium">Bootcamp</p>
+                    <p class="text-gray-400 mt-2">
+                        4 month long bootcamp about C# Asp.net.
+                    </p>
+                </div>
+
+                <div class="relative">
+                    <div class="w-6 h-6 bg-cyan-400 rounded-full border-4 border-slate-900"></div>
+                </div>
+
+                <div class="w-1/2"></div>
+            </div>
+
+            <!-- ITEM 4 – SAĞ -->
+            <div class="mb-16 flex justify-end reveal-exp ">
+                <div class="w-1/2"></div>
+
+                <div class="relative">
+                    <div class="w-6 h-6 bg-cyan-400 rounded-full border-4 border-slate-900"></div>
+                </div>
+
+                <div class="w-1/2 pl-10 text-left">
+                    <p class="text-gray-300 text-sm">2024</p>
+                    <h3 class="text-xl font-bold text-white">
+                        NTT DATA BUSINESS SOLUTIONS
+                    </h3>
+                    <p class="text-cyan-400 font-medium">Internship</p>
+                    <p class="text-gray-400 mt-2">
+                        C# .NET, ASP .NET, BLAZOR,SQL
+                        A project focusing on user authorization processes was
+                        created using N-Layer Architecture.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 5 – SOL -->
+
+            <div class="mb-16 flex justify-start reveal-exp ">
+                <div class="w-1/2 pr-10 text-right">
+                    <p class="text-gray-300 text-sm">2022-2024</p>
+                    <h3 class="text-xl font-bold text-white">Balıkesir University</h3>
+                    <p class="text-cyan-400 font-medium">Computer Programming</p>
+                    <p class="text-gray-400 mt-2">
+                        I completed my associate degree in Computer Programming at Balıkesir University with a GPA of
+                        3.38
+                    </p>
+                </div>
+
+                <div class="relative">
+                    <div class="w-6 h-6 bg-cyan-400 rounded-full border-4 border-slate-900"></div>
+                </div>
+
+                <div class="w-1/2"></div>
+            </div>
+    </section>
+
+
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-24 bg-slate-900 mt-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="h-px w-10 bg-cyan-400"></span>
+                    <span class="text-cyan-400 font-medium uppercase tracking-wider">Portfolio</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold">Featured Projects</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+
+                <!-- Project Card 1 -->
+                <div
+                    class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700 reveal delay-100">
+                    <div
+                        class="h-48 bg-slate-700 flex items-center justify-center group-hover:bg-slate-600 transition-colors relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                        </div>
+                        <i data-lucide="shopping-cart"
+                            class="w-12 h-12 text-slate-400 group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                E-Commerce DIVISIMA</h3>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/yeldakuru/Divisima-Ecommerce"
+                                    class="text-slate-400 hover:text-white"><i data-lucide="github"
+                                        class="w-5 h-5"></i></a>
+                                <a href="https://github.com/yeldakuru/Divisima-Ecommerce"
+                                    class="text-slate-400 hover:text-white"><i data-lucide="external-link"
+                                        class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4">A modern e-commerce platform built with a focus on user
+                            experience and performance.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">C# ASP.NET</span>
+                            <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">Entity Framework
+                                mvc</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div
+                    class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700 reveal delay-200">
+                    <div
+                        class="h-48 bg-slate-700 flex items-center justify-center group-hover:bg-slate-600 transition-colors relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                        </div>
+                        <i data-lucide="layout-dashboard"
+                            class="w-12 h-12 text-slate-400 group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                Movie Rating App (IMDB)</h3>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/yeldakuru/movierating"
+                                    class="text-slate-400 hover:text-white"><i data-lucide="github"
+                                        class="w-5 h-5"></i></a>
+                                <a href="https://github.com/yeldakuru/movierating"
+                                    class="text-slate-400 hover:text-white"><i data-lucide="external-link"
+                                        class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4">A movie rating app similar to IMDB, allowing users to
+                            browse, search, and rate movies.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">MERN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div
+                    class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700 reveal delay-300">
+                    <div
+                        class="h-48 bg-slate-700 flex items-center justify-center group-hover:bg-slate-600 transition-colors relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                        </div>
+                        <i data-lucide="message-square"
+                            class="w-12 h-12 text-slate-400 group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                Spotify Clone</h3>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/yeldakuru/spotifyclone"
+                                    class="text-slate-400 hover:text-white"><i data-lucide="github"
+                                        class="w-5 h-5"></i></a>
+                                <a href="https://github.com/yeldakuru/spotifyclone"
+                                    class="text-slate-400 hover:text-white"><i data-lucide="external-link"
+                                        class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4">A Spotify-inspired music streaming app with a modern UI
+                            and full playback functionality.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">MERN</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- MORE PROJECTS (hidden) -->
+            <div id="more-projects" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
+
+                <!-- Project Card 4 -->
+                <div
+                    class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+                    <!-- kart içeriği -->
+                    <div
+                        class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700 reveal delay-300">
+                        <div
+                            class="h-48 bg-slate-700 flex items-center justify-center group-hover:bg-slate-600 transition-colors relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <i data-lucide="message-square"
+                                class="w-12 h-12 text-slate-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                    Chat Realtime App
+                                </h3>
+                                <div class="flex gap-3">
+                                    <a href="https://github.com/yeldakuru/ChatApp_With_MERN"
+                                        class="text-slate-400 hover:text-white"><i data-lucide="github"
+                                            class="w-5 h-5"></i></a>
+                                    <a href="https://github.com/yeldakuru/ChatApp_With_MERN"
+                                        class="text-slate-400 hover:text-white"><i data-lucide="external-link"
+                                            class="w-5 h-5"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">Chat application with real-time messaging
+                                capabilities.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">Socket.io</span>
+                                <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">MERN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 5 -->
+                <div
+                    class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+                    <div
+                        class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700 reveal delay-300">
+                        <div
+                            class="h-48 bg-slate-700 flex items-center justify-center group-hover:bg-slate-600 transition-colors relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <i data-lucide="message-square"
+                                class="w-12 h-12 text-slate-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                    Spending Tracker</h3>
+                                <div class="flex gap-3">
+                                    <a href="https://github.com/yeldakuru/spendingTracker"
+                                        class="text-slate-400 hover:text-white"><i data-lucide="github"
+                                            class="w-5 h-5"></i></a>
+                                    <a href="https://github.com/yeldakuru/spendingTracker"
+                                        class="text-slate-400 hover:text-white"><i data-lucide="external-link"
+                                            class="w-5 h-5"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">A personal finance app to track expenses and
+                                visualize spending patterns with charts.
+                                MERN</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">js</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Project Card 6 -->
+                <div
+                    class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+                    <!-- kart içeriği -->
+                    <div
+                        class="group bg-slate-800 rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-slate-700 reveal delay-300">
+                        <div
+                            class="h-48 bg-slate-700 flex items-center justify-center group-hover:bg-slate-600 transition-colors relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <i data-lucide="message-square"
+                                class="w-12 h-12 text-slate-400 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                    E-Commerce App
+                                </h3>
+                                <div class="flex gap-3">
+                                    <a href="https://github.com/yeldakuru/E-Commerce_Asp.net-MVC"
+                                        class="text-slate-400 hover:text-white"><i data-lucide="github"
+                                            class="w-5 h-5"></i></a>
+                                    <a href="https://github.com/yeldakuru/E-Commerce_Asp.net-MVC"
+                                        class="text-slate-400 hover:text-white"><i data-lucide="external-link"
+                                            class="w-5 h-5"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">E-Commerce application built with Asp.net MVC and
+                                Entity Framework.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">Asp.net MVC</span>
+                                <span class="text-xs bg-slate-900 text-cyan-400 px-2 py-1 rounded">Entity
+                                    Framework</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="flex justify-center mt-14">
+                <button id="toggle-projects" class="border border-cyan-400 text-cyan-400 px-6 py-2 rounded-md
+               hover:bg-cyan-400/10 transition-all duration-300">
+                    More Projects
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-slate-950 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <h2 class="text-4xl font-bold mb-6">Get In Touch</h2>
+            <p class="text-slate-400 mb-10 max-w-lg mx-auto">Although I’m not currently looking for any new
+                opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try
+                my
+                best to get back to you!</p>
+
+            <div
+                class="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-2xl max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
+                <form id="contact-form" onsubmit="event.preventDefault();" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Name</label>
+                        <input name="from_name" type="text"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Email</label>
+                        <input name="from_email" type="email"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1">Message</label>
+                        <textarea name="message" rows="4"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400 transition-colors"></textarea>
+                    </div>
+                    <button
+                        class="w-full bg-cyan-500 text-slate-900 font-bold py-3 rounded-lg hover:bg-cyan-400 transition-colors">Send
+                        Message</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="mt-25 py-12 text-center text-gray-300 reveal">
+        <div class="flex flex-col items-center gap-6">
+
+            <!-- Social Icons -->
+            <div class="flex gap-6 text-3xl">
+                <a href="https://github.com/yeldakuru" target="_blank" class="hover:text-cyan-400 transition">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yeldakuru/" target="_blank" class="hover:text-cyan-400 transition">
+                    <i data-lucide="linkedin"></i>
+                </a>
+            </div>
+            <!-- Email -->
+            <div class="text-lg flex items-center justify-center gap-2">
+
+                <a href="mailto:yelda.kuru@outlook.com"
+                    class="flex items-center gap-2 hover:text-cyan-400 transition text-lg">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                    yelda.kuru@outlook.com
+                </a>
+            </div>
+
+            <!-- Divider line -->
+            <div
+                class="w-32 h-[1px] bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_8px_#22d3ee] rounded-full">
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-m text-gray-500">
+                © 2025 Design By Yelda Kuru.
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+    <script src="contactme.js"></script>
+
+
+
+</body>
+
+</html>

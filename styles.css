@@ -1,0 +1,307 @@
+ /* 1. SCROLL ANIMATION CLASSES */
+ .reveal {
+     opacity: 0;
+     transform: translateY(50px);
+     /* Start 50px down */
+     transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+ }
+
+ .reveal.active {
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+ /* Staggered delays for child elements if needed */
+ .delay-100 {
+     transition-delay: 100ms;
+ }
+
+ .delay-200 {
+     transition-delay: 200ms;
+ }
+
+ .delay-300 {
+     transition-delay: 300ms;
+ }
+
+ /* 2. INFINITE SLIDER ANIMATION */
+ .slider-container {
+     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+ }
+
+ .slider-track {
+     display: flex;
+     width: max-content;
+     animation: scroll 25s linear infinite;
+ }
+
+ .slider-track:hover {
+     animation-play-state: paused;
+     /* Pause on hover */
+ }
+
+ /* We move exactly -50% because we will duplicate the content once. 
+           So when it hits -50%, it looks exactly like 0% */
+ @keyframes scroll {
+     0% {
+         transform: translateX(0);
+     }
+
+     100% {
+         transform: translateX(-50%);
+     }
+ }
+
+ /* General aesthetics */
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #0f172a;
+     /* Slate 900 */
+     color: #f8fafc;
+
+
+ }
+
+ /* Custom Scrollbar */
+ ::-webkit-scrollbar {
+     width: 10px;
+ }
+
+ ::-webkit-scrollbar-track {
+     background: #0f172a;
+ }
+
+ ::-webkit-scrollbar-thumb {
+     background: #334155;
+     border-radius: 5px;
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+     background: #475569;
+ }
+
+ .skill-card {
+     background: #1e293b;
+     color: #e2e8f0;
+     padding: 1rem 2rem;
+     border-radius: 0.75rem;
+     font-weight: 600;
+     white-space: nowrap;
+     display: flex;
+     align-items: center;
+     gap: 0.75rem;
+     border: 1px solid #334155;
+     transition: all 0.3s;
+ }
+
+ .skill-card:hover {
+     border-color: #22d3ee;
+     transform: translateY(-2px);
+     box-shadow: 0 4px 12px rgba(34, 211, 238, 0.1);
+ }
+
+ /* Gökyüzü arka planı */
+ body {
+     margin: 0;
+
+     background: radial-gradient(ellipse at bottom, #0d1b30 0%, #020409 100%);
+     height: 100vh;
+     width: 100vw;
+ }
+
+ /* Küçük sabit yıldızlar */
+ .stars {
+     width: 2px;
+     height: 2px;
+     background: transparent;
+     box-shadow:
+         50vw 20vh white,
+         10vw 30vh white,
+         20vw 80vh white,
+         90vw 10vh white,
+         70vw 60vh white,
+         40vw 50vh white,
+         60vw 30vh white,
+         30vw 70vh white;
+     animation: sparkle 4s linear infinite;
+ }
+
+ @keyframes sparkle {
+     0% {
+         opacity: .8;
+     }
+
+     50% {
+         opacity: 1;
+     }
+
+     100% {
+         opacity: .8;
+     }
+ }
+
+ /* ⭐ Arka plan canvas */
+ #space-bg {
+     position: fixed;
+     inset: 0;
+     width: 100%;
+     height: 100%;
+     background: #05060f;
+     /* videodaki koyu lacivert ton */
+     z-index: -10;
+     pointer-events: none;
+     display: block;
+ }
+
+ /* ⭐ Senin içerik burada duracak */
+ #content {
+     position: relative;
+     z-index: 5;
+ }
+
+ #space-bg {
+     position: fixed;
+     inset: 0;
+     width: 100%;
+     height: 100%;
+     z-index: -1;
+     /* arkaya at */
+     pointer-events: none;
+     /* ⭐ scroll engellemesin! */
+ }
+
+ nav a.active {
+     color: #0f172a;
+     /* text-slate-900 */
+     background-color: #22d3ee;
+     /* bg-cyan-500 */
+     font-weight: 700;
+     /* font-bold */
+     padding: 0.5rem 1rem;
+     /* py-2 px-4 */
+     border-radius: 9999px;
+     /* rounded-full */
+     transition: all 0.3s ease;
+ }
+
+ nav a.active:hover {
+     background-color: #38e0ff;
+     /* hover:bg-cyan-400 */
+ }
+
+ .letter {
+     opacity: 0;
+     display: inline-block;
+     animation: fadeIn 0.05s forwards;
+ }
+
+ @keyframes fadeIn {
+     to {
+         opacity: 1;
+     }
+ }
+
+ /* animasyon süresi burası experience kısmı */
+ .reveal-exp {
+     opacity: 0;
+     transform: translateY(60px);
+     transition: 1.5s ease;
+
+ }
+
+ .reveal-exp.active {
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+
+ /* ---------------------------------------------------
+   RESPONSIVE PROJECT CARDS
+--------------------------------------------------- */
+ #projects .grid {
+     grid-template-columns: 1fr;
+ }
+
+ @media (min-width: 640px) {
+     #projects .grid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+ }
+
+ @media (min-width: 1024px) {
+     #projects .grid {
+         grid-template-columns: repeat(3, 1fr);
+     }
+ }
+
+
+ /* ---------------------------------------------------
+   CONTACT FORM RESPONSIVE
+--------------------------------------------------- */
+ #contact form input,
+ #contact form textarea {
+     font-size: 0.95rem;
+ }
+
+ @media (max-width: 480px) {
+     #contact .p-8 {
+         padding: 1.5rem;
+         /* mobilde kutu daralmasın */
+     }
+
+     #contact h2 {
+         font-size: 2rem;
+     }
+
+     #contact p {
+         font-size: 0.9rem;
+     }
+ }
+
+
+ /* ---------------------------------------------------
+   FOOTER RESPONSIVE
+--------------------------------------------------- */
+
+ footer .text-3xl {
+     font-size: 1.7rem;
+ }
+
+ @media (max-width: 480px) {
+     footer .text-3xl {
+         font-size: 1.4rem;
+         gap: 1.5rem;
+     }
+
+     footer a {
+         font-size: 0.95rem;
+     }
+ }
+
+
+ /* ---------------------------------------------------
+   GENERAL SPACING IMPROVEMENTS FOR MOBILE
+--------------------------------------------------- */
+ section {
+     scroll-margin-top: 90px;
+     /* Navbar fixed olduğu için mobilde boşluk bırakır */
+ }
+
+ @media (max-width: 640px) {
+     section {
+         padding-left: 1rem;
+         padding-right: 1rem;
+     }
+ }
+
+ @media (max-width: 640px) {
+     .skill-card {
+         font-size: 12px;
+         padding: 6px 10px;
+     }
+
+     .slider-track {
+         gap: 1rem;
+     }
+ }
